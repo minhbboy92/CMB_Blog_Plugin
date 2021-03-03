@@ -1,0 +1,33 @@
+{% extends 'default_frame.twig' %}
+
+{% block javascript %}{% endblock %}
+
+{% block main %}
+    {% include "Block/logo.twig" %}
+    {% include "Block/category_nav_pc.twig" %}
+    <div class="ec-productRole"  style="padding: 50px 0;">
+        <div class="ec-grid2">
+            <div class="ec-grid2__cell">
+                <div class="ec-sliderItemRole">
+                    <div class="item_nav">
+                        {% if blog.getMainListImage %}
+                        <img src="{{ asset(blog.getMainListImage|no_image_product, 'save_image') }}">
+                        {% else %}
+                        <img></img>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="ec-grid2__cell">
+                <div class="ec-productRole__profile">
+                    <div class="ec-productRole__title">
+                        <h2 class="ec-headingTitle">{{ blog.title }}</h2>
+                    </div>
+                    <div class="ec-productRole__description">{{ blog.body|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% set config = repository('Plugin\\CMBlog\\Entity\\Config').get() %}
+{% set blogs = repository('Plugin\\CMBlog\\Entity\\Blog').getList() %}
+
+{% block javascript %}{% endblock %}
+
+{% block style %}
+<style>
+/* style by mark */
+
+.list_blog .ec-topicpath__item {
+    display: initial;
+}
+
+.list_blog .ec-topicpath__item a:hover {
+    text-decoration: underline;
+}
+
+.item_blog_image {
+    width: 248px;
+    height: 248px;
+    object-fit: cover;
+}
+</style>
+{% endblock %}
+
+{% if blogs is defined and blogs|length > 0 %}
+<div class="ec-categoryRole cm_blog_plugin" style="padding: 50px;">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__en">Blog</span>
+            <span class="ec-secHeading__line"></span>
+            <span class="ec-secHeading__ja">ブログ</span>
+        </div>
+        <div class="ec-shelfRole" style="padding-top: 20px">
+            <ul class="ec-shelfGrid list_blog">
+            {% for blog in blogs %}
+            <li class="ec-shelfGrid__item">
+                <a href="{{ url('cm_blog_page_detail', {'id': blog.id}) }}">
+                    {% if blog.getMainListImage %}
+                    <img src="{{ asset(blog.getMainListImage|no_image_product, 'save_image') }}" class='item_blog_image'></img>
+                    {% else %}
+                    <img class='item_blog_image'></img>
+                    {% endif %}
+                    <p class="ec-newItemRole__listItemTitle" style="padding: 10px 0">{{ blog.getTitle }}</p>
+                    {% for category in blog.getBlogCategories %}
+                        <a href="{{ url('cm_blog_page_list', {categories: [category.getCategory().getId()]}) }}">
+                            {{ category.getCategory.getName }}
+                        </a>
+                    {% endfor %}
+                </a>
+            </li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}

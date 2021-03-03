@@ -1,0 +1,54 @@
+{% extends 'default_frame.twig' %}
+
+{% block javascript %}{% endblock %}
+
+{% block main %}
+    {% include "Block/logo.twig" %}
+    {% include "Block/category_nav_pc.twig" %}
+    <div class="ec-role">
+        <div class="ec-searchnavRole__topicpath">
+            <ol class="ec-topicpath list_blog">
+                <li class="ec-topicpath__item">
+                    <a href="{{ url('cm_blog_page_list') }}">{{ '全て'|trans }}</a>
+                </li>
+                {% for category in categories %}
+                <li class="ec-topicpath__divider">|</li>
+                <li class="ec-topicpath__item">
+                    <a href="{{ url('cm_blog_page_list', {categories: [category.getId()]}) }}">
+                        {{ category.getName}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        {% if pagination.totalItemCount > 0 %}
+            <div class="ec-shelfRole" style="padding-top: 20px">
+                <ul class="ec-shelfGrid list_blog">
+                    {% for blog in pagination %}
+                        <li class="ec-shelfGrid__item">
+                            <a href="{{ url('cm_blog_page_detail', {'id': blog.id}) }}">
+                                <p class="ec-shelfGrid__item-image">
+                                    {% if blog.getMainListImage %}
+                                    <img src="{{ asset(blog.getMainListImage|no_image_product, 'save_image') }}" class="item_blog_image"></img>
+                                    {% else %}
+                                    <img class='item_blog_image'></img>
+                                    {% endif %}
+                                </p>
+                                <p>{{ blog.title }}</p>
+                                {% if blog.body %}
+                                    <p>{{ blog.body|length > 30 ?
+                                        blog.body|striptags|replace({('&nbsp;'):' '})|slice(0,30)|raw ~ '...' : blog.body|raw }}</p>
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="ec-pagerRole">
+                {% include "pager.twig" with {'pages': pagination.paginationData, 'routes' : 'cm_blog_page_list'} %}
+            </div>
+        
+        {% endif %}
+    </div> 
+{% endblock %}

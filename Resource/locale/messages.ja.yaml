@@ -1,0 +1,40 @@
+#====================================================================================
+# Plug in specific messages
+#====================================================================================
+
+
+plg.cmblog.category.category: カテゴリ
+plg.cmblog.category.category_name: カテゴリ名
+plg.cmblog.category.category_class_name: クラス名
+
+# ラベル/メッセージ
+plg.cmblog.blog.blog_id__short: ID
+plg.cmblog.blog.image__short: 画像
+plg.cmblog.blog.title: タイトル
+plg.cmblog.blog.category.category: カテゴリ
+plg.cmblog.blog.display_status: 公開ステータス
+plg.cmblog.blog.display_status__short: 公開状態
+plg.cmblog.blog.release_date: 公開日付
+
+#====================================================================================
+# 管理画面
+#====================================================================================
+
+plg.cmblog.admin.blog.multi_search_label: 記事タイトル名・記事ID
+plg.cmblog.admin.blog.copy__confirm_title: 記事を複製します
+plg.cmblog.admin.blog.copy__confirm_message: 記事を複製してよろしいですか？
+
+# flashメッセージ
+plg.cmblog.admin.blog.bulk_change_status_complete: '%status%: %count%件が正常に適用されました'
+plg.cmblog.admin.blog.copy_complete: 記事を複製しました
+plg.cmblog.admin.blog.copy_error: 記事の複製に失敗しました
+plg.cmblog.admin.blog.reset_complete: 記事規格を初期化しました
+
+plg.cmblog.admin.blog.release_date__start: 公開日付 (開始)
+plg.cmblog.admin.blog.release_date__end: 公開日付 (終了)
+
+#------------------------------------------------------------------------------------
+# ツールチップ
+#------------------------------------------------------------------------------------
+
+plg.cmblog.admin.blog.multi_search_label: 情報を入力して一覧の絞り込み検索ができます。より詳細な条件を指定するには［詳細検索］を開いてください。
